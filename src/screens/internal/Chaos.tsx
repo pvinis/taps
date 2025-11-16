@@ -7,13 +7,23 @@ export function Chaos() {
 	const deviceId = useDeviceId()
 
 	const { isLoading, data } = db.useQuery({
-		deviceTaps: { $: { where: { name: deviceId } } },
+		deviceTaps: {
+			$: {
+				where: { name: deviceId },
+				fields: ["count"],
+			},
+		},
 	})
 
 	const deviceTaps = data?.deviceTaps[0]
 
 	const { data: dataGlobal } = db.useQuery({
-		globalTaps: { $: { where: { name: "global" } } },
+		globalTaps: {
+			$: {
+				where: { name: "global" },
+				fields: ["count"],
+			},
+		},
 	})
 
 	return (
