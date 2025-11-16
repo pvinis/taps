@@ -38,11 +38,11 @@ export function Chaos() {
 					console.log("Tapped")
 					if (!deviceTaps) {
 						db.transact(
-							db.tx.deviceTaps[id()]?.create({ name: deviceId, count: 1 }),
+							db.tx.deviceTaps[id()]!.create({ name: deviceId, count: 1 }),
 						)
 					} else {
 						db.transact(
-							db.tx.deviceTaps[deviceTaps.id]?.update({
+							db.tx.deviceTaps[deviceTaps.id]!.update({
 								count: deviceTaps.count + 1,
 							}),
 						)
