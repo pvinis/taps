@@ -1,0 +1,7 @@
+.expo/
+__generated__
+android
+dist/
+ios
+patches/
+assets/

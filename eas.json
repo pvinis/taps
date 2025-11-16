@@ -1,0 +1,59 @@
+{
+  "cli": {
+    "version": ">= 16.1.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "autoIncrement": true,
+      "developmentClient": true,
+      "distribution": "internal",
+      "environment": "development",
+      "env": {
+        "APP_VARIANT": "development"
+      },
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleDebug"
+      }
+    },
+    "development-simulator": {
+      "extends": "development",
+      "ios": { "simulator": true }
+    },
+    "staging": {
+      "autoIncrement": true,
+      "distribution": "internal",
+      "environment": "preview",
+      "env": {
+        "APP_VARIANT": "staging"
+      }
+    },
+    "appstore": {
+      "autoIncrement": true,
+      "environment": "production",
+      "env": {
+        "APP_VARIANT": "production"
+      }
+    },
+    "testflight": {
+      "extends": "appstore"
+    }
+  },
+  "submit": {
+    "appstore": {
+      "ios": {
+        "appleId": "pvinis@gmail.com",
+        "appleTeamId": "XXXX",
+        "ascAppId": "XXXX"
+      },
+      "android": {
+        "track": "internal",
+        "releaseStatus": "draft"
+      }
+    },
+    "testflight": {
+      "extends": "production"
+    }
+  }
+}
