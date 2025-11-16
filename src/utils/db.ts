@@ -1,4 +1,4 @@
-import { init, i } from "@instantdb/react-native"
+import { init } from "@instantdb/react-native"
 import { schema } from "@@/instant.schema.ts"
 
 export const db = init({

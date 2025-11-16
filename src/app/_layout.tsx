@@ -23,10 +23,10 @@ function RootLayout() {
 		if (__DEV__) {
 			registerDevMenuItems([
 				{ name: "-> Home", callback: () => router.navigate("/") },
-				{
-					name: "-> Chaos",
-					callback: () => router.navigate("/chaos"),
-				},
+				// {
+				// 	name: "-> Chaos",
+				// 	callback: () => router.navigate("/chaos"),
+				// },
 			])
 		}
 	}, [])

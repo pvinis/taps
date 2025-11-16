@@ -1,23 +1,23 @@
+import { id } from "@instantdb/react-native"
 import { useDeviceId } from "@/hooks/useDeviceId.ts"
 import { db } from "@/utils/db.ts"
-import { View } from "react-native"
-import { Button, Text } from "@/components/design-system/index.ts"
+import { Button, Text, Screen } from "@/components/design-system/index.ts"
 
 export function Chaos() {
 	const deviceId = useDeviceId()
 
-	const { isLoading, error, data } = db.useQuery({
-		deviceTaps: {
-			$: {
-				where: {
-					id: "3d0e09f4-4a5a-4571-845c-455ab985b0c2", // use name
-				},
-			},
-		},
+	const { isLoading, data } = db.useQuery({
+		deviceTaps: { $: { where: { name: deviceId } } },
+	})
+
+	const deviceTaps = data?.deviceTaps[0]
+
+	const { data: dataGlobal } = db.useQuery({
+		globalTaps: { $: { where: { name: "global" } } },
 	})
 
 	return (
-		<View className="flex-1 bg-yellow-600 pt-20">
+		<Screen safeTop>
 			<Text className="bg-red-400 text-center italic">
 				Moern, sensible defaults, fast.
 			</Text>
@@ -27,17 +27,32 @@ export function Chaos() {
 			<Text className="bg-red-400 text-center italic">
 				{isLoading ? "Loading..." : "loaded"}
 			</Text>
-			<Text className="bg-red-400 text-center italic">
+			<Text className="bg-red-400 text-center">
 				Your taps: {data?.deviceTaps[0]?.count ?? "N/A"}
 			</Text>
-			<Text className="bg-red-400 text-center italic">Global taps: tbg</Text>
+			<Text className="bg-red-400 text-center italic">
+				Global taps: {dataGlobal?.globalTaps[0]?.count ?? "N/A"}
+			</Text>
 			<Button
 				onPress={() => {
 					console.log("Tapped")
+					if (!deviceTaps) {
+						db.transact(
+							db.tx.deviceTaps[id()]?.create({ name: deviceId, count: 1 }),
+						)
+					} else {
+						db.transact(
+							db.tx.deviceTaps[deviceTaps.id]?.update({
+								count: deviceTaps.count + 1,
+							}),
+						)
+					}
+
+					//update global?
 				}}
 			>
 				<Text>Tap me!</Text>
 			</Button>
-		</View>
+		</Screen>
 	)
 }
