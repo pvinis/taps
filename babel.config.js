@@ -14,6 +14,7 @@ export default function (api) {
 					},
 				},
 			],
+			"react-native-worklets/plugin",
 		],
 	}
 }

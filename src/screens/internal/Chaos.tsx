@@ -1,6 +1,7 @@
 import { useDeviceId } from "@/hooks/useDeviceId.ts"
 import { db } from "@/utils/db.ts"
-import { Button, Text, View } from "react-native"
+import { View } from "react-native"
+import { Button, Text } from "@/components/design-system/index.ts"
 
 export function Chaos() {
 	const deviceId = useDeviceId()
@@ -9,6 +10,7 @@ export function Chaos() {
 		deviceTaps: {
 			$: {
 				where: {
+					id: "3d0e09f4-4a5a-4571-845c-455ab985b0c2", // use name
 				},
 			},
 		},
@@ -30,11 +32,12 @@ export function Chaos() {
 			</Text>
 			<Text className="bg-red-400 text-center italic">Global taps: tbg</Text>
 			<Button
-				title="wow"
 				onPress={() => {
 					console.log("Tapped")
 				}}
-			/>
+			>
+				<Text>Tap me!</Text>
+			</Button>
 		</View>
 	)
 }
