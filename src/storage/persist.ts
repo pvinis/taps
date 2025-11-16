@@ -1,3 +1,3 @@
 import { atomWithStorage } from "@/utils/atomWithStorage.ts"
 
-export const authTokenAtom = atomWithStorage<string | null>("authToken", null)
+export const deviceIdAtom = atomWithStorage<string | null>("deviceId", null)

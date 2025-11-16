@@ -92,7 +92,7 @@ export default (): ExpoConfig => {
 			predictiveBackGestureEnabled: true,
 		},
 		extra: {
-			// eas: { projectId: "XXXXX" },
+			eas: { projectId: "31d5e3d9-025d-4fff-9a0e-22105588a88a" },
 		},
 	}
 }

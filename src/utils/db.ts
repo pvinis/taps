@@ -1,14 +1,7 @@
-import { init, i, InstaQLEntity } from "@instantdb/react-native"
-
-const APP_ID = "0e7f30e3-95b3-4822-979e-ff495355978d"
-
-// const schema = i.schema({
-// 	entities: {
-// 		colors:
-// 	}
-// })
+import { init, i } from "@instantdb/react-native"
+import { schema } from "@@/instant.schema.ts"
 
 export const db = init({
-	appId: APP_ID,
-	// schema,
+	appId: process.env.EXPO_PUBLIC_INSTANT_APP_ID ?? "missing-app-id",
+	schema,
 })
